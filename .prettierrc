@@ -1,0 +1,19 @@
+{
+	"semi": true,
+	"useTabs": true,
+	"tabWidth": 4,
+	"singleQuote": true,
+	"trailingComma": "es5",
+	"printWidth": 180,
+	"plugins": ["@prettier/plugin-pug"],
+	"overrides": [
+		{
+			"files": "views/**/*.pug",
+			"options": {
+				"pugAttributeSeparator": "always",
+				"pugCommentPreserveSpaces": "trim-all",
+				"pugSortAttributes": "asc"
+			}
+		}
+	]
+}
