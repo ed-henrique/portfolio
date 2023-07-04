@@ -1,10 +1,16 @@
 // Main application file
 
+// Load environment variables
+require('dotenv').config();
+
 // Require the framework and instantiate it
 const fastify = require('fastify')({ logger: true });
 
-// Register compress plugin (global by default)
-fastify.register(require('@fastify/compress'));
+// Load plugins
+const loadPlugins = async () => {
+	// Register compress plugin (global by default)
+	await fastify.register(require('@fastify/compress'));
+};
 
 // START -- Register static files plugin --
 const path = require('path');
@@ -60,6 +66,27 @@ fastify.register(fastifyStatic, {
 	decorateReply: false,
 });
 // END -- Register static files plugin --
+
+// Register middlewares for development
+if (process.env.NODE_ENV === 'development') {
+	const devMiddlewares = async () => {
+		await fastify.register(require('@fastify/middie'));
+		fastify.use(
+			require('node-sass-middleware')({
+				src: path.join(__dirname, 'public/stylesheets'),
+				dest: path.join(__dirname, 'public/stylesheets'),
+				debug: true,
+				indentedSyntax: true,
+				outputStyle: 'compressed',
+				prefix: '/stylesheets/',
+			})
+		);
+	};
+
+	devMiddlewares();
+}
+
+loadPlugins();
 
 // START -- Register routes --
 fastify.register(require(path.join(__dirname, 'routes/index')), {

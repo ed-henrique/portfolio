@@ -5,9 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "npm run css:compile && node app.js",
-    "dev": "./watch.sh",
+    "dev": "node --watch app.js",
     "css:compile": "sass ./public/stylesheets:public/stylesheets",
-    "css:compile:watch": "sass --watch ./public/stylesheets:public/stylesheets",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -22,8 +21,11 @@
     "pug": "^3.0.2"
   },
   "devDependencies": {
+    "@fastify/middie": "^8.3.0",
     "@prettier/plugin-pug": "^2.5.1",
+    "dotenv": "^16.3.1",
     "eslint": "^8.44.0",
+    "node-sass-middleware": "^1.0.1",
     "prettier": "^2.8.8",
     "sass": "^1.63.6"
   }
