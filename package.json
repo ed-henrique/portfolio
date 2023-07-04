@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "npm run css:compile && node app.js",
-    "dev": "node --watch app.js",
+    "dev": "export NODE_ENV=development && node --watch app.js",
     "css:compile": "sass ./public/stylesheets:public/stylesheets",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,7 +23,6 @@
   "devDependencies": {
     "@fastify/middie": "^8.3.0",
     "@prettier/plugin-pug": "^2.5.1",
-    "dotenv": "^16.3.1",
     "eslint": "^8.44.0",
     "node-sass-middleware": "^1.0.1",
     "prettier": "^2.8.8",
