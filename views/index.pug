@@ -2,7 +2,13 @@ extends layout
 
 block head
     link(rel='stylesheet', href='/stylesheets/index.css')
+    script(type="module", src="/javascripts/repelEffect.js" defer)
 
 block content
-    main
-        h1 Hey
+    h1
+        for char in name
+            span(class='char')
+                if char == ' '
+                    | &nbsp;
+                else
+                    = char
